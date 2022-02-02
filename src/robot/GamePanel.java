@@ -12,10 +12,10 @@ public class GamePanel extends JPanel implements Runnable {
     final int scale = 3;
 
     public final int titleSize = originalTitleSize * scale; // 48 * 48
-    final int maxScreenCol = 20;
-    final int maxScreenRow = 25;
-    final int screenWidth = titleSize * maxScreenCol;  // 760 px
-    final int screenHeight = titleSize * maxScreenRow; // 576 px
+    final int maxScreenCol = 15;
+    final int maxScreenRow = 20;
+    final int screenWidth = titleSize * maxScreenRow;  // 760 px
+    final int screenHeight = titleSize * maxScreenCol; // 576 px
 
     //FPS
     int FPS = 60;
@@ -44,7 +44,6 @@ public class GamePanel extends JPanel implements Runnable {
         gameThread = new Thread(this);
         gameThread.start();
     }
-
 
     public void run(){
 
@@ -80,8 +79,6 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
     }
-
-
 
     public void update() {
 
