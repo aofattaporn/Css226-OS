@@ -52,20 +52,33 @@ public class Player extends Entity {
 
     public void update() {
 
-        if (keyH.upPressed) {
-            direction = "up";
-            y -= speed;
-        } else if (keyH.downPressed) {
-            direction = "down";
-            y += speed;
-        } else if (keyH.leftPressed) {
-            direction = "left";
-            x -= speed;
-        } else if (keyH.rightPressed) {
-            direction = "right";
-            x += speed;
-        }
+        if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true) {
 
+            if (keyH.upPressed) {
+                direction = "up";
+                y -= speed;
+            } else if (keyH.downPressed) {
+                direction = "down";
+                y += speed;
+            } else if (keyH.leftPressed) {
+                direction = "left";
+                x -= speed;
+            } else if (keyH.rightPressed) {
+                direction = "right";
+                x += speed;
+            }
+
+            spriteCounter++;
+            if (spriteCounter > 10) {
+                if (spriteNum == 1) {
+                    spriteNum = 2;
+                } else if (spriteNum == 2) {
+                    spriteNum = 1;
+                }
+
+                spriteCounter = 0;
+            }
+        }
     }
 
     public void draw(Graphics2D graphics2D) {
@@ -75,22 +88,42 @@ public class Player extends Entity {
 
         BufferedImage image = null;
 
-        switch (direction){
+        switch (direction) {
             case "up":
-                image = up1;
+                if (spriteNum == 1) {
+                    image = up1;
+                }
+                if (spriteNum == 2) {
+                    image = up2;
+                }
                 break;
-            case "down" :
-                image = up1;
+            case "down":
+                if (spriteNum == 1) {
+                    image = down1;
+                }
+                if (spriteNum == 2) {
+                    image = down2;
+                }
                 break;
-            case "left" :
-                image = up1;
+            case "left":
+                if (spriteNum == 1) {
+                    image = left1;
+                }
+                if (spriteNum == 2) {
+                    image = left2;
+                }
                 break;
-            case "right" :
-                image = up1;
+            case "right":
+                if (spriteNum == 1) {
+                    image = right1;
+                }
+                if (spriteNum == 2) {
+                    image = right2;
+                }
                 break;
-
         }
 
+        // draw character by image
         graphics2D.drawImage(image, x, y, gp.titleSize, gp.titleSize, null);
 
     }
