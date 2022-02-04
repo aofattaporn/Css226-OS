@@ -36,14 +36,14 @@ public class Player extends Entity {
 
     public void getPlayerImage() {
         try {
-            up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("../res/player/download.png")));
-            up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("../res/player/download.png")));
-            down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("../res/player/download.png")));
-            down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("../res/player/download.png")));
-            left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("../res/player/download.png")));
-            left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("../res/player/download.png")));
-            right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("../res/player/download.png")));
-            right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("../res/player/download.png")));
+            up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("../res/player/down1.png")));
+            up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("../res/player/down2.png")));
+            down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("../res/player/down1.png")));
+            down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("../res/player/down2.png")));
+            left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("../res/player/down1.png")));
+            left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("../res/player/down2.png")));
+            right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("../res/player/down1.png")));
+            right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("../res/player/down2.png")));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -82,9 +82,6 @@ public class Player extends Entity {
     }
 
     public void draw(Graphics2D graphics2D) {
-
-//        graphics2D.setColor(Color.white);
-//        graphics2D.fillRect(x, y, gp.titleSize, gp.titleSize);
 
         BufferedImage image = null;
 
