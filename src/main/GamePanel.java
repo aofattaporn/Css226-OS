@@ -1,35 +1,44 @@
-package robot;
+package main;
 
 import entity.Player;
+import tile.Tile;
+import tile.TileManangger;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable {
 
-    // screen setting
+    // screen setting -> tile size by 1 box
     final int originalTitleSize = 16;
-    final int scale = 3;
+    final int scale = 2;
 
-    public final int titleSize = originalTitleSize * scale; // 48 * 48
-    final int maxScreenCol = 15;
-    final int maxScreenRow = 20;
-    final int screenWidth = titleSize * maxScreenRow;  // 760 px
-    final int screenHeight = titleSize * maxScreenCol; // 576 px
+    public final int titleSize = originalTitleSize * scale; // 48 px
+    public final int maxScreenCol = 16;
+    public final int maxScreenRow = 16;
+    public final int screenWidth = titleSize * maxScreenRow;  // 760 px
+    public final int screenHeight = titleSize * maxScreenCol; // 576 px
+
+    // WORLD SETTING
+    public final int maxWorldCol = 50;
+    public final int maxWorldRow = 50;
+    public final int worldWidth = titleSize * maxWorldCol;
+    public final int worldHeight = titleSize * maxWorldRow;
 
     //FPS
-    int FPS = 60;
+    public int FPS = 60;
 
+    // declare object
+    public TileManangger tileManangger = new TileManangger(this);
+    public KeyHandler keyHandler = new KeyHandler();
+    public Player player = new Player(this, keyHandler);
+    public Thread gameThread;
 
-    KeyHandler keyHandler = new KeyHandler();
-    Thread gameThread;
-    Player player = new Player(this, keyHandler);
+    public int playerX = 100;
+    public int playerY = 100;
+    public int playerSpeed = 4;
 
-    int playerX = 100;
-    int playerY = 100;
-    int playerSpeed =4;
-
-
+    // constructor method
     public GamePanel() {
 
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -40,6 +49,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     }
 
+    // command start to game
     public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
@@ -54,7 +64,7 @@ public class GamePanel extends JPanel implements Runnable {
         long timer = 0;
         int drawCount = 0;
 
-
+        //  setTimer of Thread
         while (gameThread != null){
 
             currentTime = System.nanoTime();
@@ -81,9 +91,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-
         player.update();
-
     }
 
     public void paintComponent(Graphics graphics) {
@@ -91,9 +99,11 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D graphics2D = (Graphics2D) graphics;
 
+        tileManangger.draw(graphics2D);
         player.draw(graphics2D);
 
 
         graphics2D.dispose();
     }
+
 }

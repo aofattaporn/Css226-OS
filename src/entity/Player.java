@@ -1,7 +1,7 @@
 package entity;
 
-import robot.GamePanel;
-import robot.KeyHandler;
+import main.GamePanel;
+import main.KeyHandler;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -14,22 +14,31 @@ public class Player extends Entity {
     GamePanel gp;
     KeyHandler keyH;
 
+    public final int screenX;
+    public final int screenY;
+
+//    constructor
     public Player(GamePanel gp, KeyHandler keyH) {
 
         this.gp = gp;
         this.keyH = keyH;
+
+        screenX = gp.screenWidth / 2 - (gp.titleSize / 2 ) ;
+        screenY = gp.screenHeight / 2 - (gp.titleSize / 2 );
 
         setDefaultValues();
         getPlayerImage();
 
     }
 
+//    setDefaulttValues
     public void setDefaultValues() {
 
-        x = 100;
-        y = 100;
-        direction = "up";
+//        center in the map
+         worldX =  gp.titleSize * 23;
+        worldY = gp.titleSize * 21;
 
+        direction = "up";
         speed = 4;
 
     }
@@ -56,16 +65,16 @@ public class Player extends Entity {
 
             if (keyH.upPressed) {
                 direction = "up";
-                y -= speed;
+                worldY -= speed;
             } else if (keyH.downPressed) {
                 direction = "down";
-                y += speed;
+                worldY += speed;
             } else if (keyH.leftPressed) {
                 direction = "left";
-                x -= speed;
+                worldX -= speed;
             } else if (keyH.rightPressed) {
                 direction = "right";
-                x += speed;
+                worldX += speed;
             }
 
             spriteCounter++;
@@ -121,7 +130,7 @@ public class Player extends Entity {
         }
 
         // draw character by image
-        graphics2D.drawImage(image, x, y, gp.titleSize, gp.titleSize, null);
+        graphics2D.drawImage(image, screenX, screenY, gp.titleSize, gp.titleSize, null);
 
     }
 

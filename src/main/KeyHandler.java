@@ -1,4 +1,4 @@
-package robot;
+package main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -17,7 +17,7 @@ public class KeyHandler implements KeyListener {
 
         int code = e.getKeyCode();
 
-        if (code == KeyEvent.VK_W) {
+        if (code == KeyEvent.VK_W || code == KeyEvent.VK_KP_UP) {
             upPressed = true;
         }
         if (code == KeyEvent.VK_S) {
